@@ -8,11 +8,10 @@ export default function Form({ input, setInput, list, setList }) {
         setInput(e.target.value);
     }
 
-    // submit form
+    // submit form (create)
     const onFormSubmit = (e) => {
         e.preventDefault();
         setList([...list, { id: uuidv4(), title: input, Completed: false }]);
-        console.log(list);
         setInput("");
     }
 

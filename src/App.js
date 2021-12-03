@@ -1,11 +1,16 @@
 import { useState } from "react";
 
+// for router
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 // css import
 import "./assets/css/style.css"
+
 // all components import
-import AllList from "./components/AllList";
-import Form from "./components/Form";
 import Header from "./components/Header";
+import Home from "./components//Home";
+import About from "./components/About";
+import Contact from "./components/Contact";
 
 function App() {
 
@@ -15,9 +20,26 @@ function App() {
 
   return (
     <div className="App">
+      <BrowserRouter>
+
+      {/* header */}
       <Header/>
-      <Form input={input} setInput={setInput} list={list} setList={setList} />
-      <AllList list={list} setList={setList} />
+
+        <Routes>
+          {/* root path */}
+          <Route path="/" exact element={ 
+            <Home input={input} setInput={setInput} list={list} setList={setList} />
+           }
+          />
+
+          {/* about */}
+          <Route path="about" element={ <About/> } />
+
+          {/* contact */}
+          <Route path="contact" element={ <Contact/> } />
+
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
