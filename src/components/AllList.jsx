@@ -1,10 +1,13 @@
+import axios from 'axios';
 import React from 'react'
 
 export default function AllList({ list, setList }) {
 
     // for delete item (delete)
     const deleteItem = (id) => {
-        setList(list.filter((lists) => lists.id !== id));
+        axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`).then(res => {
+            setList(list.filter((lists) => lists.id !== id));
+        });
     }
 
     // for complete buy (complete)

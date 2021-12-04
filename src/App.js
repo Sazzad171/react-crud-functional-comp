@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // for router
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// axios
+import axios from "axios";
 
 // css import
 import "./assets/css/style.css"
@@ -16,7 +18,14 @@ function App() {
 
   // state
   const [input, setInput] = useState("");
-  const[list, setList] = useState([]);
+  const [list, setList] = useState([]);
+
+  // fetch initial data
+  useEffect( () => {
+    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=5').then((res) => {
+      setList(res.data);
+    });
+  }, [] );
 
   return (
     <div className="App">

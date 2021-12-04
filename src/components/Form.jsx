@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { v4 as uuidv4 } from "uuid";
 
 export default function Form({ input, setInput, list, setList }) {
@@ -11,7 +12,14 @@ export default function Form({ input, setInput, list, setList }) {
     // submit form (create)
     const onFormSubmit = (e) => {
         e.preventDefault();
-        setList([...list, { id: uuidv4(), title: input, Completed: false }]);
+
+        axios.post('https://jsonplaceholder.typicode.com/todos', {
+            id: uuidv4(), 
+            title: input, 
+            Completed: false
+        }).then(res => {
+            setList([...list, res.data]);
+        })
         setInput("");
     }
 
